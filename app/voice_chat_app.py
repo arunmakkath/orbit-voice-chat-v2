@@ -27,6 +27,8 @@ st.title("🎤 Orbit Voice Chat Assistant (Local Sesame CSM)")
 
 @st.cache_resource
 def load_model():
+    import torch
+    from csm import AutoProcessor, CSMModel
     processor = AutoProcessor.from_pretrained("facebook/wav2vec2-base-960h")
     model = CSMModel.from_pretrained("facebook/wav2vec2-base-960h")
     return processor, model
