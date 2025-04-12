@@ -4,6 +4,18 @@ import os
 import openai
 import torch
 import soundfile as sf
+import asyncio
+import sys
+import os
+sys.path.append(os.path.dirname(__file__))
+
+# Fix for "no running event loop" on Python 3.12 / Streamlit Cloud
+if sys.platform.startswith("linux") and sys.version_info >= (3, 10):
+    try:
+        asyncio.get_running_loop()
+    except RuntimeError:
+        asyncio.set_event_loop(asyncio.new_event_loop())
+
 from dotenv import load_dotenv
 from csm import AutoProcessor, CSMModel
 
